@@ -33,6 +33,8 @@
         <mockito.version>5.13.0</mockito.version>
         <openapi.version>2.6.0</openapi.version>
         <checkstyle.version>3.5.0</checkstyle.version>
+        <lombok.version>1.18.34</lombok.version>
+        <validator.version>8.0.1.Final</validator.version>
         <maven.checkstyle.plugin.configLocation>
             checkstyle.xml
         </maven.checkstyle.plugin.configLocation>
@@ -83,6 +85,19 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>${openapi.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${validator.version}</version>
         </dependency>
     </dependencies>
 
