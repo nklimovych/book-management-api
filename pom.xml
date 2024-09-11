@@ -30,6 +30,9 @@
 		<java.version>21</java.version>
 		<junit.version>5.11.0</junit.version>
 		<mockito.version>5.13.0</mockito.version>
+		<maven.checkstyle.plugin.configLocation>
+			checkstyle.xml
+		</maven.checkstyle.plugin.configLocation>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -79,6 +82,26 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<configLocation>${maven.checkstyle.plugin.configLocation}</configLocation>
+					<consoleOutput>true</consoleOutput>
+					<failsOnError>true</failsOnError>
+					<linkXRef>false</linkXRef>
+					<sourceDirectories>src</sourceDirectories>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
