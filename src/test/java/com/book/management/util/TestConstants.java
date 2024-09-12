@@ -10,6 +10,7 @@ public class TestConstants {
     public static final String VALID_BOOK_GENRE_POETRY = "Poetry";
     public static final String VALID_GENRE_IN_DIFFERENT_CASES_POETRY = "pOetRy";
     public static final String VALID_BOOK_ISBN = "978-1-1516-4732-0";
+    public static final String ISBN_DUPLICATE = "978-7-3664-5711-2";
 
     public static final String VALID_BOOK_AUTHOR_NOT_IN_DB = "Lina Kostenko";
     public static final String VALID_BOOK_ISBN_NOT_IN_DB = "978-1-2345-6789-0";
@@ -26,6 +27,8 @@ public class TestConstants {
     public static final int PAGE_SIZE = 5;
     public static final int ZERO_PAGE_SIZE = 0;
     public static final int NEGATIVE_PAGE_SIZE = -1;
+    public static final int NUMBER_OF_INVOCATIONS = 1;
+    public static final int EXPECTED_LIST_SIZE = 1;
 
     public static final String EMPTY_STRING = "";
 }
