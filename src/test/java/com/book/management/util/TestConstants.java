@@ -38,6 +38,5 @@ public class TestConstants {
 
     public static final String TITLE_0_EXPRESSION = "$[0].title";
     public static final String TITLE_EXPRESSION = "$.title";
-    public static final String EXPRESSION = "$";
     public static final String ERRORS_EXPRESSION = "$.errors[0]";
 }

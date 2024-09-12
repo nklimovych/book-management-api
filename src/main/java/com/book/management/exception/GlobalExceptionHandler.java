@@ -51,7 +51,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     private String getErrorMessage(ObjectError e) {
-        if (e instanceof FieldError fieldError) {
+        if (e instanceof FieldError) {
             String message = e.getDefaultMessage();
             return message != null ? message : "Validation error";
         }

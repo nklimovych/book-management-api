@@ -29,7 +29,6 @@ import com.book.management.exception.DuplicateIsbnException;
 import com.book.management.exception.EntityNotFoundException;
 import com.book.management.mapper.BookMapper;
 import com.book.management.model.Book;
-import com.book.management.repository.SpecificationProviderManager;
 import com.book.management.repository.book.BookRepository;
 import com.book.management.repository.book.BookSpecificationBuilder;
 import java.util.List;
@@ -60,9 +59,6 @@ class BookServiceImplTest {
 
     @Mock
     private BookSpecificationBuilder specificationBuilder;
-
-    @Mock
-    private SpecificationProviderManager<Book> specificationProviderManager;
 
     private Book validBook;
 
