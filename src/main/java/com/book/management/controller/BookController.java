@@ -87,13 +87,14 @@ public class BookController {
     @Operation(summary = "Get a list of books by search parameters",
             description = "Get a list of books by search parameters: title, author and genre")
     public List<BookResponseDto> searchBook(
-            BookSearchParametersDto parametersDto,
             @ParameterObject
             @PageableDefault(
                     sort = {"author", "title"},
                     value = DEFAULT_PAGE_SIZE)
-            Pageable pageable
+            Pageable pageable,
+            BookSearchParametersDto parametersDto
     ) {
+        System.out.println("Received search parameters: " + parametersDto);
         return bookService.search(parametersDto, pageable);
     }
 }

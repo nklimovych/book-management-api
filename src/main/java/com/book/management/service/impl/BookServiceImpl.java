@@ -7,12 +7,14 @@ import com.book.management.exception.DuplicateIsbnException;
 import com.book.management.exception.EntityNotFoundException;
 import com.book.management.mapper.BookMapper;
 import com.book.management.model.Book;
-import com.book.management.repository.BookRepository;
+import com.book.management.repository.book.BookRepository;
+import com.book.management.repository.book.BookSpecificationBuilder;
 import com.book.management.service.BookService;
 import java.util.List;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,6 +25,7 @@ public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
+    private final BookSpecificationBuilder specificationBuilder;
 
     @Override
     public BookResponseDto save(CreateBookRequestDto requestDto) {
@@ -68,8 +71,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookResponseDto> search(BookSearchParametersDto parametersDto, Pageable pageable) {
-        return List.of();
+    public List<BookResponseDto> search(BookSearchParametersDto params, Pageable pageable) {
+        Specification<Book> specification = specificationBuilder.build(params);
+        return bookRepository.findAll(specification, pageable)
+                             .stream()
+                             .map(bookMapper::toDto)
+                             .toList();
     }
 
     @Override

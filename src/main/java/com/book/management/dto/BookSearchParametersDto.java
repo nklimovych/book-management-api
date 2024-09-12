@@ -1,7 +1,15 @@
 package com.book.management.dto;
 
-import lombok.Data;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-@Data
-public class BookSearchParametersDto {
+public record BookSearchParametersDto(
+        @Schema(example = "Kobzar")
+        String title,
+
+        @Schema(example = "Taras Shevchenko")
+        String author,
+
+        @Schema(example = "Poetry")
+        String genre
+) {
 }
