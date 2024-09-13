@@ -40,6 +40,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.context.jdbc.Sql;
 
 @DataJpaTest
+@DisplayName("Book Repository Tests")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class BookRepositoryTest {
     @Autowired

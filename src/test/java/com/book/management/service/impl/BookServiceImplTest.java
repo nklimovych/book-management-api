@@ -2,6 +2,7 @@ package com.book.management.service.impl;
 
 import static com.book.management.util.TestConstants.EXPECTED_LIST_SIZE;
 import static com.book.management.util.TestConstants.INVALID_ID;
+import static com.book.management.util.TestConstants.ISBN_DIFFERENT;
 import static com.book.management.util.TestConstants.ISBN_DUPLICATE;
 import static com.book.management.util.TestConstants.NUMBER_OF_INVOCATIONS;
 import static com.book.management.util.TestConstants.PAGE_NUMBER;
@@ -47,6 +48,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 
 @ExtendWith(MockitoExtension.class)
+@DisplayName("Book Service Tests")
 class BookServiceImplTest {
     @Mock
     private BookRepository bookRepository;
@@ -192,6 +194,27 @@ class BookServiceImplTest {
 
         assertEquals(expectedErrorMessage, exception.getMessage());
         verify(bookRepository, never()).save(any(Book.class));
+    }
+
+    @Test
+    @DisplayName("Update book by id -> (ISBN differs but no duplicate found)")
+    void updateById_RequestIsbnDiffers_NoDuplicateFound_ReturnUpdatedBook() {
+        CreateBookRequestDto updateBookDto = getCreateBookRequestDto();
+        updateBookDto.setIsbn(ISBN_DIFFERENT);
+        Book updatedBook = new Book();
+        updatedBook.setId(VALID_BOOK_ID);
+        updatedBook.setIsbn(updateBookDto.getIsbn());
+
+        when(bookRepository.findById(VALID_BOOK_ID)).thenReturn(Optional.of(validBook));
+        when(bookRepository.findBookByIsbn(ISBN_DIFFERENT)).thenReturn(Optional.empty());
+        when(bookMapper.toEntity(updateBookDto)).thenReturn(updatedBook);
+        when(bookRepository.save(updatedBook)).thenReturn(updatedBook);
+        when(bookMapper.toDto(updatedBook)).thenReturn(getBookDto(updateBookDto));
+
+        BookResponseDto result = bookService.updateById(VALID_BOOK_ID, updateBookDto);
+
+        assertEquals(updateBookDto.getIsbn(), result.getIsbn());
+        verify(bookRepository, times(1)).save(updatedBook);
     }
 
     @Test
