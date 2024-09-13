@@ -94,7 +94,6 @@ public class BookController {
             Pageable pageable,
             BookSearchParametersDto parametersDto
     ) {
-        System.out.println("Received search parameters: " + parametersDto);
         return bookService.search(parametersDto, pageable);
     }
 }

@@ -1,9 +1,8 @@
 package com.book.management.exception;
 
+import com.book.management.dto.ErrorResponseDto;
 import java.time.LocalDateTime;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -43,11 +42,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     private ResponseEntity<Object> getResponseEntity(HttpStatus status, Object message) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("status", status);
-        body.put("errors", message);
-        return new ResponseEntity<>(body, status);
+        ErrorResponseDto errorResponse = new ErrorResponseDto(
+                LocalDateTime.now(),
+                status.value(),
+                message
+        );
+        return new ResponseEntity<>(errorResponse, status);
     }
 
     private String getErrorMessage(ObjectError e) {

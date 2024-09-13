@@ -10,22 +10,24 @@ import org.hibernate.validator.constraints.ISBN;
 @Data
 public class CreateBookRequestDto {
     @NotBlank
-    @Schema(example = "Kobzar")
+    @Schema(description = "Title of the book", example = "Kobzar")
     private String title;
 
     @NotBlank
-    @Schema(example = "Taras Shevchenko")
+    @Schema(description = "Author of the book", example = "Taras Shevchenko")
     private String author;
 
     @ValidYearRange(message = "Publication year can not be greater than the current year")
-    @Schema(example = "1840")
+    @Schema(description = "Year the book was published", example = "1840")
     private int publicationYear;
 
-    @Schema(example = "Poetry", nullable = true)
+    @Schema(description = "Genre of the book. Can be null if the genre is not specified",
+            example = "Poetry", nullable = true)
     private String genre;
 
     @NotNull
     @ISBN(type = ISBN.Type.ISBN_13)
-    @Schema(example = "978-966-1650-77-9")
+    @Schema(description = "International Standard Book Number in the ISBN-13 format",
+            example = "978-966-1650-77-9")
     private String isbn;
 }

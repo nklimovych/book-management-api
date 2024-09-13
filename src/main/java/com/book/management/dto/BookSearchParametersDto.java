@@ -3,13 +3,13 @@ package com.book.management.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 public record BookSearchParametersDto(
-        @Schema(example = "Kobzar")
+        @Schema(description = "Title of the book to search for", example = "Kobzar")
         String title,
 
-        @Schema(example = "Taras Shevchenko")
+        @Schema(description = "Author of the book to search for", example = "Taras Shevchenko")
         String author,
 
-        @Schema(example = "Poetry")
+        @Schema(description = "Genre of the book to search for", example = "Poetry")
         String genre
 ) {
 }
