@@ -37,7 +37,7 @@ public class TestConstants {
     public static final String EMPTY_STRING = "";
 
     public static final String ID = "/{id}";
-    public static final String BASE_URL = "/books";
+    public static final String BASE_URL = "/api/books";
     public static final String SEARCH_URL = BASE_URL + "/search";
 
     public static final String TITLE_0_EXPRESSION = "$[0].title";
